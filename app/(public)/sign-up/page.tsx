@@ -41,6 +41,7 @@ export default function SignUp() {
     address: '',
     height: '',
   });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [remember, setremember] = useState(0);
   const [isloading, setisloading] = useState(false);
 
@@ -130,7 +131,7 @@ export default function SignUp() {
             </div>
 
             <div className="grid gap-2">
-              <Label htmlFor="fatherName">Father's Name</Label>
+              <Label htmlFor="fatherName">Fathers Name</Label>
               <Input
                 id="fatherName"
                 value={data.fatherName}

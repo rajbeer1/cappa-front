@@ -15,8 +15,8 @@ import Loader from '@/components/loader';
 
 interface LocationData {
   location: {
-    type: string; 
-    coordinates: [number, number]; 
+    type: string;
+    coordinates: [number, number];
   };
   accelerometer: {
     x: number;
@@ -39,7 +39,7 @@ export default function Map() {
   });
 
   const [locationData, setLocationData] = useState<LocationData | null>(null);
-  const [map, setMap] = useState(null);
+  const [map, setMap] = useState<google.maps.Map | null>(null); // Update the type here
   const [showInfo, setShowInfo] = useState(false);
   const POLLING_INTERVAL = 20000; // 20 seconds
 
@@ -124,7 +124,7 @@ export default function Map() {
           width: '100%',
         }}
         zoom={15}
-        onLoad={(loadedMap) => setMap(loadedMap)}
+        onLoad={(loadedMap) => setMap(loadedMap)} // This should now work
         center={center}
       >
         <Marker
@@ -142,7 +142,6 @@ export default function Map() {
                 <h3 className="font-bold mb-2">Device Location</h3>
                 <p>Lat: {center.lat.toFixed(6)}</p>
                 <p>Lng: {center.lng.toFixed(6)}</p>
-            
                 <p className="mt-2">
                   Status:{' '}
                   {locationData.crashDetected ? (

@@ -1,6 +1,7 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import axiosClient from '@/helpers/axios';
@@ -61,7 +62,7 @@ const HomePage = () => {
     }
   };
 
-  const handleLocationPermission = () => {
+  const handleLocationPermission = useCallback(() => {
     if (!navigator.geolocation) {
       toast.error('Geolocation is not supported by your browser');
       return;
@@ -84,7 +85,7 @@ const HomePage = () => {
         setLocationPermission(false);
       }
     );
-  };
+  }, []);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -105,7 +106,7 @@ const HomePage = () => {
     };
 
     // Request location permission first
-    handleLocationPermission();
+
 
     // Only fetch user data if location permission is granted
     if (locationPermission) {
@@ -128,7 +129,9 @@ const HomePage = () => {
       return () => clearInterval(locationInterval);
     }
   }, [locationPermission]);
-
+  useEffect(() => {
+    handleLocationPermission();
+  }, [handleLocationPermission]); 
   const InfoItem = ({
     label,
     value,

@@ -23,7 +23,7 @@ export default function LoginAccount() {
     email: "",
     password:""
   })
-  const [remember,setremember]= useState(0)
+
   const [isloading, setisloading] = useState(false)
   const submit = async () => {
     try {
@@ -86,32 +86,17 @@ export default function LoginAccount() {
               />
             </div>
             <div className="flex items-center space-x-2">
-              <Checkbox
-                id="terms"
-                onCheckedChange={(checked) => {
-                  if (checked === false) {
-                    setremember(0);
-                  } else if (checked === true) {
-                    setremember(1);
-                  }
-                  console.log(remember);
-                }}
-              />
+              <Checkbox id="terms" />
               <label
-                htmlFor="terms"
+                htmlFor="remember"
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
-                Remember me
+                Remember me&apos;
               </label>
             </div>
             <div className="flex items-center">
               <span className="mr-2">New to the website?</span>
-              <Button
-                onClick={() => router.push('/sign-up')}
-
-              >
-                Sign Up
-              </Button>
+              <Button onClick={() => router.push('/sign-up')}>Sign Up</Button>
             </div>
           </CardContent>
           <CardFooter className="flex flex-col">
